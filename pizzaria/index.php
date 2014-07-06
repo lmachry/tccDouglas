@@ -7,6 +7,7 @@ include "ctrl/conexao.php";
 <html>
     <head>
         <title> PizzAdmin - Administrador de Pizzarias </title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <link type="text/css" rel="stylesheet" href="view/css/style.css" />
         <link type="text/css" rel="stylesheet" href="view/css/validationEngine.jquery.css" />
         <script src="view/js/jquery.js" type="text/javascript"></script>
