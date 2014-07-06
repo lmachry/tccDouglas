@@ -4,6 +4,12 @@ body {
     color: #FFFF00;
 }
 
+
+legend{
+  font: Verdana, sans-serif;
+  font-size: 14px;
+  padding: 10px 5px;
+}
 #logo {
     position: relative;
     margin-left: 40%;
