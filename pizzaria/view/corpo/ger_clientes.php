@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=ISO-8859-1');
 include_once '../../ctrl/MunicipioDAO.php';
 include_once '../../ctrl/BairroDAO.php';
 $dao = new MunicipioDAO();
