@@ -1,6 +1,5 @@
-
 <?php
-    
+    header("Content-Type: text/html; charset=ISO-8859-1");
     require_once '../../ctrl/antiInjection.php';
     $obj = antiInjection($_POST['form']);
     require_once '../../ctrl/'. $obj . 'DAO.php';

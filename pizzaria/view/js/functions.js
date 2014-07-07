@@ -1,9 +1,7 @@
+
 $(document).ready(function() {
     var i = 0;
     $("form").validationEngine();
-
-
-
 
     $(".submenu a").click(function() {
         i = 0;
@@ -172,8 +170,8 @@ $(document).ready(function() {
         var $form = $(this),
                 url = $form.attr("action");
 
-        //var txt = $form.serialize();
-        //alert(txt);
+        var txt = $form.serialize();
+        alert(decodeURI(txt));
         $.post(url, $form.serialize(), function(data) {
             //alert(data);
             $(".colDireita").empty().load("view/corpo/listaDados.php", {form: table});

@@ -1,37 +1,28 @@
 <?php
 /* REGRAS:
- * - ANTES DO BOTÃƒO "ENVIAR", O FORMULÃRIO DEVE TER UM INPUT TYPE HIDDEN,
+ * - ANTES DO BOTÃO "ENVIAR", O FORMULÁRIO DEVE TER UM INPUT TYPE HIDDEN,
  *   COM O NOME DE "form" E O VALOR DEVE SER O MESMO NOME DO ARQUIVO OBJETO.
- * - OS MÃ‰TODOS GET E SET DEVEM ESTAR NA MESMA SEQUÃŠNCIA DOS CAMPOS DO FORMULÃRIO
+ * - OS MÉTODOS GET E SET DEVEM ESTAR NA MESMA SEQUÊNCIA DOS CAMPOS DO FORMULÁRIO
  * 
  * 
  *  */
 
-
-
-
-
-
-
-
-
-
 //echo "<script>alert('teste');</script>";
 // plugin para tratar os dados antes de inserir
 require_once 'ctrl/antiInjection.php';
-//Criando os arrays para guardar o nome dos campos, dos valores, dos mÃ©todod Get e Set
+//Criando os arrays para guardar o nome dos campos, dos valores, dos métodod Get e Set
 $campos = array();
 $valores = array();
 $setClass = array();
 $getClass = array();
 $mCampos =  array();
 $valArray = array();
-//O Ã­ndice serÃ¡ utilizado futuramente para percorrer as arrays criadas.
+//O índice será utilizado futuramente para percorrer as arrays criadas.
 $indice = 0;
-//Aqui nÃ³s percorremos os dados passados via POST e colocamos o nome dos campos do formulÃ¡rio
+//Aqui nós percorremos os dados passados via POST e colocamos o nome dos campos do formulário
 //em um array, e os valores em outro array.
 foreach ($_POST as $campo => $valor) {
-    if(is_array($valor)){ //Se for array, faz um loop tratando os dados de cada posiÃ§Ã£o
+    if(is_array($valor)){ //Se for array, faz um loop tratando os dados de cada posição
         foreach ($valor as $v){
             $valArray[] = antiInjection($v);
         }
@@ -39,10 +30,10 @@ foreach ($_POST as $campo => $valor) {
         $valores[] = $valArray;
     }else{
         $campos[] = antiInjection($campo);
-        $valores[] = antiInjection($valor);
+        $valores[] = antiInjection(utf8_decode($valor));
     }
 }
-// O Ãºltimo campo Ã© um hidden com o nome da Classe que serÃ¡ instanciada para 
+// O último campo é um hidden com o nome da Classe que será instanciada para 
 // adicionar os dados
 $classe = end($valores);
 //echo $classe;
@@ -51,27 +42,27 @@ $classe = end($valores);
 require_once './model/' . $classe . '.php';
 require_once './ctrl/' . $classe . 'DAO.php';
 
-// Instanciando a Classe recÃ©m incluÃ­da
+// Instanciando a Classe recém incluída
 $objeto = (object) new $classe();
 
-// Recuperando dados sobre a Classe (atributos, mÃ©todos, etc..)
+// Recuperando dados sobre a Classe (atributos, métodos, etc..)
 $metodos = new ReflectionClass($classe);
-// Aqui percorremos a classe em busca dos mÃ©todos
+// Aqui percorremos a classe em busca dos métodos
 foreach ($metodos->getMethods() as $metodo) {
-    $nomeMetodo = $metodo->getName(); //passamos o nome do mÃ©todo a uma variÃ¡vel
-    if (substr($nomeMetodo, 0, 3) == "get") // caso o mÃ©todo inicie com "get",
-        $getClass[] = $nomeMetodo;          // serÃ¡ adicionado Ã  array $getClass[]
-    if (substr($nomeMetodo, 0, 3) == "set") // caso o mÃ©todo inicie com "set"
-        $setClass[] = $nomeMetodo;          // serÃ¡ adicionado Ã  array $setClass[]
+    $nomeMetodo = $metodo->getName(); //passamos o nome do método a uma variável
+    if (substr($nomeMetodo, 0, 3) == "get") // caso o método inicie com "get",
+        $getClass[] = $nomeMetodo;          // será adicionado à array $getClass[]
+    if (substr($nomeMetodo, 0, 3) == "set") // caso o método inicie com "set"
+        $setClass[] = $nomeMetodo;          // será adicionado à array $setClass[]
     
 }
 
-array_pop($campos); //elimino a Ãºltima posiÃ§Ã£o do array, pois Ã© o nome do objeto a ser instanciado
+array_pop($campos); //elimino a última posição do array, pois é o nome do objeto a ser instanciado
 array_pop($valores); //idem ao anterior
-array_shift($setClass); // remove o primeiro mÃ©todo Set (setId) 
-array_shift($getClass); // remove o primeiro mÃ©todo Get (getId)
+array_shift($setClass); // remove o primeiro método Set (setId) 
+array_shift($getClass); // remove o primeiro método Get (getId)
 
-//Loop no array $setClass, jogando os valores do formulÃ¡rio para o respectivo objeto
+//Loop no array $setClass, jogando os valores do formulário para o respectivo objeto
 foreach ($setClass as $set){
     if(is_array($valores[$indice])){
         foreach($valores[$indice] as $val){

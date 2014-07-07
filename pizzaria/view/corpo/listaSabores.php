@@ -1,5 +1,5 @@
 <?php
-
+header("Content-Type: text/html; charset=ISO-8859-1");
 +extract($_POST);
 include_once '../../ctrl/SaborDAO.php';
 include_once '../../ctrl/PrecoDAO.php';

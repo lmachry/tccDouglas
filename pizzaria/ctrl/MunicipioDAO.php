@@ -12,7 +12,7 @@ class MunicipioDAO extends Municipio{
     public function inserir(Municipio $municipio){
         $insert = mysql_query("INSERT INTO municipios (nome) VALUES ('".$municipio->getNome()."')");
         if(!$insert){
-            echo "NÃ£o foi possÃ­vel inserir o registro no banco de dados. ".  mysql_error();
+            echo "Não foi possível inserir o registro no banco de dados. ".  mysql_error();
         }
     }
     
@@ -21,7 +21,7 @@ class MunicipioDAO extends Municipio{
                                 "nome = '".$municipio->getNome()."'".
                                 "WHERE id = '".$municipio->getId()."'");
         if(!$update){
-            echo "NÃ£o foi possÃ­vel atualizar o registro.";
+            echo "NÃ£o foi possível atualizar o registro.";
         }
     }
     

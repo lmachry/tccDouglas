@@ -4,14 +4,6 @@ body {
     color: #FFFF00;
 }
 
-fieldset{
-  border: none;
-}
-legend{
-  font: Verdana, sans-serif;
-  font-size: 14px;
-  padding: 10px 5px;
-}
 #logo {
     position: relative;
     margin-left: 40%;

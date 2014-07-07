@@ -1,5 +1,5 @@
 <?php
-
+header("Content-Type: text/html; charset=ISO-8859-1");
 //echo "<script>alert('teste');</script>";
 +extract($_POST);
 require_once '../../ctrl/conexao.php';

@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+header("Content-Type: text/html; charset=ISO-8859-1");
 include "ctrl/conexao.php";
 //Conexao::getInstance();
 ?>
@@ -14,7 +14,7 @@ include "ctrl/conexao.php";
         <script src="view/js/jquery.validationEngine.js" type="text/javascript"></script>
         <script src="view/js/jquery.validationEngine-pt_BR.js" type="text/javascript"></script>
         <script src="view/js/jquery.maskMoney.js" type="text/javascript"></script>
-        <script src="view/js/functions.js" type="text/javascript"></script>
+        <script src="view/js/functions.js" type="text/javascript" charset="ISO-8859-1"></script>
         <script src="view/js/mascara.js" type="text/javascript"></script>
         <script src="view/js/validaCpf.js" type="text/javascript"></script>
       
